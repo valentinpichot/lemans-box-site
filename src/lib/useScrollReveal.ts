@@ -19,16 +19,16 @@ export function useScrollReveal(rootEl: Ref<HTMLElement | null>) {
         if (!items.length) return
 
         if (prefersReducedMotion) {
-          gsap.set(items, { opacity: 1, y: 0 })
+          gsap.set(items, { autoAlpha: 1, y: 0 })
           return
         }
 
-        gsap.set(items, { opacity: 0, y: 24 })
+        gsap.set(items, { autoAlpha: 0, y: 20 })
         ScrollTrigger.create({
           trigger: group,
-          start: "top 82%",
+          start: "top 85%",
           once: true,
-          onEnter: () => gsap.to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: "power2.out" }),
+          onEnter: () => gsap.to(items, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08, ease: "power3.out" }),
         })
       })
     }, rootEl.value)

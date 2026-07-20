@@ -48,7 +48,7 @@ onMounted(async () => {
     gsap.set(wordEls, { autoAlpha: 0, y: "0.4em" })
     gsap.set(restEls, { autoAlpha: 0, y: 12 })
 
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" } })
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
     tl.to(wordEls, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.05 })
     tl.to(restEls, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.1 }, "-=0.4")
   }, rootEl.value)
@@ -58,8 +58,8 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="rootEl" class="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 pt-24">
-    <div class="absolute inset-0 -z-10" aria-hidden="true">
+  <section ref="rootEl" class="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 pt-24">
+    <div class="absolute inset-0" aria-hidden="true">
       <img
         ref="imageEl"
         src="/images/hero-storage.jpg"
@@ -74,7 +74,7 @@ onUnmounted(() => ctx?.revert())
       <div class="absolute inset-0 bg-primary/75"></div>
     </div>
 
-    <div class="mx-auto max-w-3xl text-center">
+    <div class="relative z-10 mx-auto max-w-3xl text-center">
       <p data-fade class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">N°1 du stockage en Sarthe</p>
 
       <h1 class="mt-6 overflow-hidden text-[clamp(2.5rem,7vw,5rem)] font-semibold leading-[1.05] tracking-tight text-white">

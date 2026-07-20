@@ -27,16 +27,16 @@ onMounted(() => {
     const items = gsap.utils.toArray<HTMLElement>("[data-bento-tile]", rootEl.value!)
 
     if (prefersReducedMotion) {
-      gsap.set(items, { opacity: 1, y: 0 })
+      gsap.set(items, { autoAlpha: 1, y: 0 })
       return
     }
 
-    gsap.set(items, { opacity: 0, y: 24 })
+    gsap.set(items, { autoAlpha: 0, y: 20 })
     ScrollTrigger.create({
       trigger: rootEl.value,
-      start: "top 75%",
+      start: "top 80%",
       once: true,
-      onEnter: () => gsap.to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: "power2.out" }),
+      onEnter: () => gsap.to(items, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.07, ease: "power3.out" }),
     })
   }, rootEl.value)
 })
