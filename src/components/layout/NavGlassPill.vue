@@ -8,8 +8,8 @@ const links = [
   { to: "/", label: "Accueil" },
   { to: "/particuliers", label: "Particuliers" },
   { to: "/professionnels", label: "Professionnels" },
-  { to: "/comment-ca-marche", label: "Comment ça marche" },
-  { to: "/ou-sommes-nous", label: "Où sommes-nous" },
+  { to: "/comment-ca-marche", label: "Fonctionnement" },
+  { to: "/ou-sommes-nous", label: "Nos centres" },
   { to: "/contact", label: "Contact" },
 ]
 
@@ -19,18 +19,18 @@ const mobileOpen = ref(false)
 <template>
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
     <nav
-      class="neo-glass-light flex w-full max-w-4xl items-center justify-between gap-4 rounded-full px-4 py-2 shadow-lg shadow-primary/5"
+      class="neo-glass-light flex w-full max-w-5xl items-center justify-between gap-3 rounded-full py-2 pl-4 pr-2 shadow-lg shadow-primary/5"
       aria-label="Navigation principale"
     >
       <RouterLink to="/" class="flex items-center gap-2 shrink-0" @click="mobileOpen = false">
         <img src="/images/logo.png" alt="Le Mans Box" class="h-9 w-auto" width="145" height="128" />
       </RouterLink>
 
-      <ul class="hidden items-center gap-1 lg:flex">
+      <ul class="hidden items-center gap-0.5 lg:flex">
         <li v-for="link in links" :key="link.to">
           <RouterLink
             :to="link.to"
-            class="rounded-full px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+            class="block whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
             active-class="bg-primary text-white hover:bg-primary"
           >
             {{ link.label }}
