@@ -2,11 +2,13 @@
 import { RouterLink } from "vue-router"
 import { Check } from "lucide-vue-next"
 import { proRates, proEquipment, proServices, company } from "@/data/content"
+import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
 </script>
 
 <template>
   <section class="px-6 pb-16 pt-32 sm:pt-40">
     <div class="mx-auto max-w-3xl text-center">
+      <SecureBoxMotif color="#e8622c" class="mx-auto mb-4 w-10" aria-hidden="true" />
       <p class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Professionnels</p>
       <h1 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold text-primary">Des locaux adaptés à votre activité</h1>
       <p class="mx-auto mt-4 max-w-xl text-text/60">

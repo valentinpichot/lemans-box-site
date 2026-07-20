@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -87,16 +88,14 @@ onUnmounted(() => ctx?.revert())
 <template>
   <section ref="wrapperEl" class="relative min-h-[100svh] w-full overflow-hidden bg-primary">
     <div ref="heroEl" class="flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-light to-primary">
-      <svg class="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="#f6f3ec" stroke-width="1.5" fill="none" opacity="0.5">
-          <path d="M60 220 L140 180 L220 220 L140 260 Z" />
-          <path d="M60 220 L60 280 L140 320 L140 260 Z" />
-          <path d="M220 220 L220 280 L140 320 L140 260 Z" />
-          <path d="M180 140 L260 100 L340 140 L260 180 Z" />
-          <path d="M180 140 L180 200 L260 240 L260 180 Z" />
-          <path d="M340 140 L340 200 L260 240 L260 180 Z" />
-        </g>
-      </svg>
+      <SecureBoxMotif
+        color="#f6f3ec"
+        :opacity="0.16"
+        class="pointer-events-none absolute left-1/2 top-1/2 w-[120%] max-w-[900px] -translate-x-1/2 -translate-y-1/2 sm:w-[70%]"
+        aria-hidden="true"
+      />
+      <SecureBoxMotif color="#e8622c" :opacity="0.12" class="pointer-events-none absolute -left-6 bottom-[10%] w-28 -rotate-6 sm:w-36" aria-hidden="true" />
+      <SecureBoxMotif color="#f6f3ec" :opacity="0.1" class="pointer-events-none absolute -right-4 top-[8%] w-24 rotate-12 sm:w-32" aria-hidden="true" />
       <div ref="heroContentEl" class="relative z-10 px-6 text-center text-white">
         <p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">Nos centres en un coup d'œil</p>
         <h2 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold">Simple. Sécurisé. Sarthois.</h2>
