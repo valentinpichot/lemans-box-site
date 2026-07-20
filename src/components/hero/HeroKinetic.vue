@@ -2,7 +2,6 @@
 import { onMounted, onUnmounted, ref } from "vue"
 import { RouterLink } from "vue-router"
 import { gsap } from "gsap"
-import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
 
 const rootEl = ref<HTMLElement | null>(null)
 const words = ["Un", "box", "sécurisé,", "disponible", "tout", "de", "suite."]
@@ -36,23 +35,29 @@ onUnmounted(() => ctx?.revert())
 
 <template>
   <section ref="rootEl" class="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 pt-24">
-    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-      <SecureBoxMotif color="#12233f" :opacity="0.05" class="absolute -left-16 top-[12%] w-64 -rotate-6 sm:w-80" />
-      <SecureBoxMotif color="#12233f" :opacity="0.05" class="absolute -right-10 bottom-[8%] w-56 rotate-12 sm:w-72" />
-      <SecureBoxMotif color="#e8622c" :opacity="0.07" class="absolute right-[8%] top-[6%] w-32 rotate-3 sm:w-40" />
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <img
+        src="/images/hero-storage.jpg"
+        alt=""
+        class="size-full object-cover"
+        fetchpriority="high"
+        width="1869"
+        height="1920"
+      />
+      <div class="absolute inset-0 bg-primary/75"></div>
     </div>
 
     <div class="mx-auto max-w-3xl text-center">
       <p data-fade class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">N°1 du stockage en Sarthe</p>
 
-      <h1 class="mt-6 overflow-hidden text-[clamp(2.5rem,7vw,5rem)] font-semibold leading-[1.05] tracking-tight text-primary">
+      <h1 class="mt-6 overflow-hidden text-[clamp(2.5rem,7vw,5rem)] font-semibold leading-[1.05] tracking-tight text-white">
         <span v-for="(word, i) in words" :key="i" class="inline-block">
           <span data-word class="inline-block">{{ word }}</span>
           <span v-if="i < words.length - 1">&nbsp;</span>
         </span>
       </h1>
 
-      <p data-fade class="mx-auto mt-6 max-w-xl text-lg text-text/70">
+      <p data-fade class="mx-auto mt-6 max-w-xl text-lg text-white/75">
         3 centres à Ruaudin, Coulaines et Saint-Mars-la-Brière. Sans engagement, dès 29&nbsp;€/mois.
       </p>
 
