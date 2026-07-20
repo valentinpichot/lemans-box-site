@@ -30,10 +30,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NavGlassPill />
-  <main>
-    <RouterView />
-  </main>
-  <FooterMegaHub />
-  <CookieConsent />
+  <div class="app-enter">
+    <NavGlassPill />
+    <main>
+      <RouterView />
+    </main>
+    <FooterMegaHub />
+    <CookieConsent />
+  </div>
 </template>
