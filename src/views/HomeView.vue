@@ -1,44 +1,18 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue"
+import { ref } from "vue"
 import { RouterLink } from "vue-router"
-import { ArrowRight, Truck, PackageCheck, Boxes } from "lucide-vue-next"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ArrowRight, Truck, PackageCheck, Boxes, Home, Building2 } from "lucide-vue-next"
 import HeroKinetic from "@/components/hero/HeroKinetic.vue"
 import ReassuranceIconStrip from "@/components/reassurance/ReassuranceIconStrip.vue"
 import BentoGallery from "@/components/gallery/BentoGallery.vue"
+import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
 import { complementaryServices } from "@/data/content"
+import { useScrollReveal } from "@/lib/useScrollReveal"
 
 const serviceIcons = [Truck, PackageCheck, Boxes]
 
 const rootEl = ref<HTMLElement | null>(null)
-let ctx: gsap.Context | undefined
-
-onMounted(() => {
-  if (!rootEl.value) return
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-  ctx = gsap.context(() => {
-    const groups = gsap.utils.toArray<HTMLElement>("[data-reveal-group]", rootEl.value!)
-
-    groups.forEach((group) => {
-      const items = group.querySelectorAll<HTMLElement>("[data-reveal-item]")
-      if (prefersReducedMotion) {
-        gsap.set(items, { opacity: 1, y: 0 })
-        return
-      }
-      gsap.set(items, { opacity: 0, y: 24 })
-      ScrollTrigger.create({
-        trigger: group,
-        start: "top 80%",
-        once: true,
-        onEnter: () => gsap.to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out" }),
-      })
-    })
-  }, rootEl.value)
-})
-
-onUnmounted(() => ctx?.revert())
+useScrollReveal(rootEl)
 </script>
 
 <template>
@@ -54,7 +28,10 @@ onUnmounted(() => ctx?.revert())
           class="group flex flex-col justify-between rounded-3xl bg-primary p-8 text-white transition-all hover:-translate-y-1 hover:shadow-xl sm:p-10"
         >
           <div>
-            <h2 class="text-2xl font-semibold sm:text-3xl">Particuliers</h2>
+            <div class="flex size-11 items-center justify-center rounded-full bg-white/10">
+              <Home class="size-5 text-accent" aria-hidden="true" />
+            </div>
+            <h2 class="mt-4 text-2xl font-semibold sm:text-3xl">Particuliers</h2>
             <p class="mt-3 text-white/70">
               Déménagement, rénovation, stockage saisonnier ou simplement plus de place chez vous : un box adapté à chaque besoin.
             </p>
@@ -71,7 +48,10 @@ onUnmounted(() => ctx?.revert())
           class="group flex flex-col justify-between rounded-3xl border border-primary/10 bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-xl sm:p-10"
         >
           <div>
-            <h2 class="text-2xl font-semibold text-primary sm:text-3xl">Professionnels</h2>
+            <div class="flex size-11 items-center justify-center rounded-full bg-accent/10">
+              <Building2 class="size-5 text-accent" aria-hidden="true" />
+            </div>
+            <h2 class="mt-4 text-2xl font-semibold text-primary sm:text-3xl">Professionnels</h2>
             <p class="mt-3 text-text/60">Stock, archives, matériel ou domiciliation : des locaux de 18 à 100 m² avec accès poids lourds.</p>
           </div>
           <span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent">
@@ -102,12 +82,14 @@ onUnmounted(() => ctx?.revert())
       </div>
     </section>
 
-    <section class="bg-primary px-6 py-20 text-center text-white sm:py-28">
-      <h2 class="text-3xl font-semibold sm:text-4xl">Une question, un devis ?</h2>
-      <p class="mx-auto mt-4 max-w-xl text-white/70">Contactez-nous pour un devis gratuit et personnalisé, sans engagement.</p>
+    <section class="relative overflow-hidden bg-primary px-6 py-20 text-center text-white sm:py-28">
+      <SecureBoxMotif color="#f6f3ec" :opacity="0.08" class="pointer-events-none absolute -left-16 top-1/2 w-72 -translate-y-1/2 -rotate-6" aria-hidden="true" />
+      <SecureBoxMotif color="#e8622c" :opacity="0.1" class="pointer-events-none absolute -right-10 bottom-0 w-48 rotate-12" aria-hidden="true" />
+      <h2 class="relative text-3xl font-semibold sm:text-4xl">Une question, un devis ?</h2>
+      <p class="relative mx-auto mt-4 max-w-xl text-white/70">Contactez-nous pour un devis gratuit et personnalisé, sans engagement.</p>
       <RouterLink
         to="/contact"
-        class="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white transition-colors hover:bg-accent-light"
+        class="relative mt-8 inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white transition-colors hover:bg-accent-light"
       >
         Nous contacter
       </RouterLink>

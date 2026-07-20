@@ -1,83 +1,92 @@
 <script setup lang="ts">
+import { ref } from "vue"
 import { RouterLink } from "vue-router"
+import { Home, Hammer, Snowflake, PackageOpen } from "lucide-vue-next"
 import { particulierRates, company } from "@/data/content"
 import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
+import { useScrollReveal } from "@/lib/useScrollReveal"
+
+const useCases = [
+  { icon: Home, title: "Déménagement", description: "Gardez vos meubles et effets personnels en sécurité pendant le transfert." },
+  { icon: Hammer, title: "Rénovation", description: "Protégez vos biens pendant les travaux de votre logement." },
+  { icon: Snowflake, title: "Stockage saisonnier", description: "Vêtements d'hiver, équipements de sport, vélos, décorations de Noël." },
+  { icon: PackageOpen, title: "Manque d'espace", description: "Libérez de la place chez vous tout en gardant vos objets à portée de main." },
+]
+
+const rootEl = ref<HTMLElement | null>(null)
+useScrollReveal(rootEl)
 </script>
 
 <template>
-  <section class="px-6 pb-16 pt-32 sm:pt-40">
-    <div class="mx-auto max-w-3xl text-center">
-      <SecureBoxMotif color="#e8622c" class="mx-auto mb-4 w-10" aria-hidden="true" />
-      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Particuliers</p>
-      <h1 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold text-primary">Un espace de stockage pour chaque besoin</h1>
-      <p class="mx-auto mt-4 max-w-xl text-text/60">
-        Déménagement, rénovation, stockage saisonnier ou manque de place chez vous : nos box sécurisés s'adaptent à votre situation, sans
-        engagement de durée.
+  <div ref="rootEl">
+    <section class="relative overflow-hidden px-6 pb-16 pt-32 sm:pt-40">
+      <SecureBoxMotif color="#12233f" :opacity="0.04" class="pointer-events-none absolute -right-16 -top-10 w-72 rotate-6" aria-hidden="true" />
+      <div class="relative mx-auto max-w-3xl text-center">
+        <SecureBoxMotif color="#e8622c" class="mx-auto mb-4 w-10" aria-hidden="true" />
+        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Particuliers</p>
+        <h1 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold text-primary">Un espace de stockage pour chaque besoin</h1>
+        <p class="mx-auto mt-4 max-w-xl text-text/60">
+          Déménagement, rénovation, stockage saisonnier ou manque de place chez vous : nos box sécurisés s'adaptent à votre situation, sans
+          engagement de durée.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-5xl px-6 pb-20">
+      <div data-reveal-group class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div
+          v-for="rate in particulierRates"
+          :key="rate.volume"
+          data-reveal-item
+          class="group rounded-2xl border border-primary/10 bg-white p-5 text-center transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
+        >
+          <p class="text-sm font-medium text-text/60">{{ rate.volume }}</p>
+          <p class="mt-2 text-3xl font-semibold text-primary transition-colors group-hover:text-accent">{{ rate.price }}&nbsp;€</p>
+          <p class="text-xs text-text/50">TTC / mois</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs text-text/50">
+        Frais d'entrée de 68&nbsp;€ (payés une seule fois) et caution de 150&nbsp;€ par chèque non encaissé — détail complet sur la page
+        <RouterLink to="/comment-ca-marche" class="underline">Comment ça marche</RouterLink>.
       </p>
-    </div>
-  </section>
+    </section>
 
-  <section class="mx-auto max-w-4xl px-6 pb-20">
-    <div class="overflow-hidden rounded-3xl border border-primary/10 bg-white">
-      <table class="w-full text-left text-sm">
-        <thead class="bg-primary/5 text-primary">
-          <tr>
-            <th scope="col" class="px-6 py-4 font-semibold">Volume</th>
-            <th scope="col" class="px-6 py-4 font-semibold">Prix TTC / mois</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-primary/10">
-          <tr v-for="rate in particulierRates" :key="rate.volume">
-            <td class="px-6 py-4 font-medium text-primary">{{ rate.volume }}</td>
-            <td class="px-6 py-4 text-accent font-semibold">{{ rate.price }}&nbsp;€</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="mt-4 text-xs text-text/50">
-      Frais d'entrée de 68&nbsp;€ (payés une seule fois) et caution de 150&nbsp;€ par chèque non encaissé — détail complet sur la page
-      <RouterLink to="/comment-ca-marche" class="underline">Comment ça marche</RouterLink>.
-    </p>
-  </section>
+    <section class="mx-auto max-w-4xl px-6 pb-24">
+      <h2 class="text-2xl font-semibold text-primary">Exemples d'utilisation</h2>
+      <div data-reveal-group class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div
+          v-for="useCase in useCases"
+          :key="useCase.title"
+          data-reveal-item
+          class="rounded-2xl border border-primary/10 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+        >
+          <div class="flex size-10 items-center justify-center rounded-full bg-accent/10">
+            <component :is="useCase.icon" class="size-5 text-accent" aria-hidden="true" />
+          </div>
+          <p class="mt-3 font-medium text-primary">{{ useCase.title }}</p>
+          <p class="mt-1 text-sm text-text/60">{{ useCase.description }}</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="mx-auto max-w-4xl px-6 pb-24">
-    <h2 class="text-2xl font-semibold text-primary">Exemples d'utilisation</h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2">
-      <div class="rounded-2xl border border-primary/10 bg-white p-5">
-        <p class="font-medium text-primary">Déménagement</p>
-        <p class="mt-1 text-sm text-text/60">Gardez vos meubles et effets personnels en sécurité pendant le transfert.</p>
+    <section class="relative overflow-hidden bg-primary px-6 py-16 text-center text-white">
+      <SecureBoxMotif color="#f6f3ec" :opacity="0.08" class="pointer-events-none absolute -left-10 -top-10 w-56 -rotate-12" aria-hidden="true" />
+      <h2 class="relative text-2xl font-semibold sm:text-3xl">Un devis gratuit et personnalisé</h2>
+      <p class="relative mx-auto mt-3 max-w-md text-white/70">Appelez-nous ou écrivez-nous, nous vous répondons rapidement.</p>
+      <div class="relative mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          :href="company.phoneHref"
+          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+        >
+          {{ company.phone }}
+        </a>
+        <RouterLink
+          to="/contact"
+          class="inline-flex h-11 items-center justify-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          Nous écrire
+        </RouterLink>
       </div>
-      <div class="rounded-2xl border border-primary/10 bg-white p-5">
-        <p class="font-medium text-primary">Rénovation</p>
-        <p class="mt-1 text-sm text-text/60">Protégez vos biens pendant les travaux de votre logement.</p>
-      </div>
-      <div class="rounded-2xl border border-primary/10 bg-white p-5">
-        <p class="font-medium text-primary">Stockage saisonnier</p>
-        <p class="mt-1 text-sm text-text/60">Vêtements d'hiver, équipements de sport, vélos, décorations de Noël.</p>
-      </div>
-      <div class="rounded-2xl border border-primary/10 bg-white p-5">
-        <p class="font-medium text-primary">Manque d'espace</p>
-        <p class="mt-1 text-sm text-text/60">Libérez de la place chez vous tout en gardant vos objets à portée de main.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-primary px-6 py-16 text-center text-white">
-    <h2 class="text-2xl font-semibold sm:text-3xl">Un devis gratuit et personnalisé</h2>
-    <p class="mx-auto mt-3 max-w-md text-white/70">Appelez-nous ou écrivez-nous, nous vous répondons rapidement.</p>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-      <a
-        :href="company.phoneHref"
-        class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white hover:bg-accent-light"
-      >
-        {{ company.phone }}
-      </a>
-      <RouterLink
-        to="/contact"
-        class="inline-flex h-11 items-center justify-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
-      >
-        Nous écrire
-      </RouterLink>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>

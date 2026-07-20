@@ -2,13 +2,15 @@
 import { RouterLink } from "vue-router"
 import { Phone, Mail } from "lucide-vue-next"
 import { company, centers } from "@/data/content"
+import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
 
 const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="bg-primary text-white/80">
-    <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
+  <footer class="relative overflow-hidden bg-primary text-white/80">
+    <SecureBoxMotif color="#f6f3ec" :opacity="0.05" class="pointer-events-none absolute -right-14 -top-14 w-64 rotate-6" aria-hidden="true" />
+    <div class="relative mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
       <div class="lg:col-span-1">
         <img src="/images/logo.png" alt="Le Mans Box" class="h-10 w-auto brightness-0 invert" width="145" height="128" />
         <p class="mt-4 text-sm leading-relaxed">

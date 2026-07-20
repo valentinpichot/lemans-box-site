@@ -1,81 +1,102 @@
 <script setup lang="ts">
+import { ref } from "vue"
 import { RouterLink } from "vue-router"
 import { Check } from "lucide-vue-next"
 import { proRates, proEquipment, proServices, company } from "@/data/content"
 import SecureBoxMotif from "@/components/illustrations/SecureBoxMotif.vue"
+import { useScrollReveal } from "@/lib/useScrollReveal"
+
+const rootEl = ref<HTMLElement | null>(null)
+useScrollReveal(rootEl)
 </script>
 
 <template>
-  <section class="px-6 pb-16 pt-32 sm:pt-40">
-    <div class="mx-auto max-w-3xl text-center">
-      <SecureBoxMotif color="#e8622c" class="mx-auto mb-4 w-10" aria-hidden="true" />
-      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Professionnels</p>
-      <h1 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold text-primary">Des locaux adaptés à votre activité</h1>
-      <p class="mx-auto mt-4 max-w-xl text-text/60">
-        Stock, archives, matériel, e-commerce ou domiciliation : nos espaces de 18 à 100&nbsp;m² s'adaptent à l'évolution de votre
-        entreprise.
-      </p>
-    </div>
-  </section>
+  <div ref="rootEl">
+    <section class="relative overflow-hidden px-6 pb-16 pt-32 sm:pt-40">
+      <SecureBoxMotif color="#12233f" :opacity="0.04" class="pointer-events-none absolute -right-16 -top-10 w-72 rotate-6" aria-hidden="true" />
+      <div class="relative mx-auto max-w-3xl text-center">
+        <SecureBoxMotif color="#e8622c" class="mx-auto mb-4 w-10" aria-hidden="true" />
+        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Professionnels</p>
+        <h1 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold text-primary">Des locaux adaptés à votre activité</h1>
+        <p class="mx-auto mt-4 max-w-xl text-text/60">
+          Stock, archives, matériel, e-commerce ou domiciliation : nos espaces de 18 à 100&nbsp;m² s'adaptent à l'évolution de votre
+          entreprise.
+        </p>
+      </div>
+    </section>
 
-  <section class="mx-auto max-w-4xl px-6 pb-16">
-    <div class="overflow-x-auto rounded-3xl border border-primary/10 bg-white">
-      <table class="w-full text-left text-sm">
-        <thead class="bg-primary/5 text-primary">
-          <tr>
-            <th scope="col" class="px-6 py-4 font-semibold">Surface</th>
-            <th scope="col" class="px-6 py-4 font-semibold">Volume</th>
-            <th scope="col" class="px-6 py-4 font-semibold">Prix HT / mois</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-primary/10">
-          <tr v-for="rate in proRates" :key="rate.surface">
-            <td class="px-6 py-4 font-medium text-primary">{{ rate.surface }}</td>
-            <td class="px-6 py-4 text-text/60">{{ rate.volume }}</td>
-            <td class="px-6 py-4 font-semibold text-accent">{{ rate.price }}&nbsp;€ HT</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="mt-4 text-xs text-text/50">Prix hors frais d'entrée (68&nbsp;€, payés une seule fois).</p>
-  </section>
+    <section class="mx-auto max-w-5xl px-6 pb-16">
+      <div data-reveal-group class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="rate in proRates"
+          :key="rate.surface"
+          data-reveal-item
+          class="group rounded-2xl border border-primary/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
+        >
+          <div class="flex items-baseline justify-between">
+            <p class="text-lg font-semibold text-primary">{{ rate.surface }}</p>
+            <p class="text-sm text-text/50">{{ rate.volume }}</p>
+          </div>
+          <p class="mt-3 text-3xl font-semibold text-primary transition-colors group-hover:text-accent">
+            {{ rate.price }}&nbsp;€ <span class="text-sm font-normal text-text/50">HT / mois</span>
+          </p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-xs text-text/50">Prix hors frais d'entrée (68&nbsp;€, payés une seule fois).</p>
+    </section>
 
-  <section class="mx-auto max-w-4xl px-6 pb-16">
-    <h2 class="text-2xl font-semibold text-primary">Équipements inclus</h2>
-    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-      <li v-for="item in proEquipment" :key="item" class="flex items-start gap-2 text-sm text-text/70">
-        <Check class="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-        {{ item }}
-      </li>
-    </ul>
-  </section>
+    <section class="mx-auto max-w-5xl px-6 pb-16">
+      <h2 class="text-2xl font-semibold text-primary">Équipements inclus</h2>
+      <div data-reveal-group class="mt-6 grid gap-3 sm:grid-cols-2">
+        <div
+          v-for="item in proEquipment"
+          :key="item"
+          data-reveal-item
+          class="flex items-center gap-3 rounded-xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
+            <Check class="size-4 text-accent" aria-hidden="true" />
+          </div>
+          <p class="text-sm text-text/70">{{ item }}</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="mx-auto max-w-4xl px-6 pb-24">
-    <h2 class="text-2xl font-semibold text-primary">Services additionnels</h2>
-    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-      <li v-for="item in proServices" :key="item" class="flex items-start gap-2 text-sm text-text/70">
-        <Check class="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-        {{ item }}
-      </li>
-    </ul>
-  </section>
+    <section class="mx-auto max-w-5xl px-6 pb-24">
+      <h2 class="text-2xl font-semibold text-primary">Services additionnels</h2>
+      <div data-reveal-group class="mt-6 grid gap-3 sm:grid-cols-2">
+        <div
+          v-for="item in proServices"
+          :key="item"
+          data-reveal-item
+          class="flex items-center gap-3 rounded-xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
+            <Check class="size-4 text-accent" aria-hidden="true" />
+          </div>
+          <p class="text-sm text-text/70">{{ item }}</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="bg-primary px-6 py-16 text-center text-white">
-    <h2 class="text-2xl font-semibold sm:text-3xl">Discutons de votre besoin en entreprise</h2>
-    <p class="mx-auto mt-3 max-w-md text-white/70">Un devis gratuit et adapté à votre activité.</p>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-      <a
-        :href="company.phoneHref"
-        class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white hover:bg-accent-light"
-      >
-        {{ company.phone }}
-      </a>
-      <RouterLink
-        to="/contact"
-        class="inline-flex h-11 items-center justify-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
-      >
-        Nous écrire
-      </RouterLink>
-    </div>
-  </section>
+    <section class="relative overflow-hidden bg-primary px-6 py-16 text-center text-white">
+      <SecureBoxMotif color="#f6f3ec" :opacity="0.08" class="pointer-events-none absolute -left-10 -top-10 w-56 -rotate-12" aria-hidden="true" />
+      <h2 class="relative text-2xl font-semibold sm:text-3xl">Discutons de votre besoin en entreprise</h2>
+      <p class="relative mx-auto mt-3 max-w-md text-white/70">Un devis gratuit et adapté à votre activité.</p>
+      <div class="relative mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          :href="company.phoneHref"
+          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+        >
+          {{ company.phone }}
+        </a>
+        <RouterLink
+          to="/contact"
+          class="inline-flex h-11 items-center justify-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          Nous écrire
+        </RouterLink>
+      </div>
+    </section>
+  </div>
 </template>
