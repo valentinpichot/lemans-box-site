@@ -5,32 +5,26 @@ import { gsap } from "gsap"
 
 const rootEl = ref<HTMLElement | null>(null)
 const imageEl = ref<HTMLImageElement | null>(null)
+const imageLoaded = ref(false)
 const words = ["Un", "box", "sécurisé,", "disponible", "tout", "de", "suite."]
 
 let ctx: gsap.Context | undefined
-let onImageLoad: (() => void) | undefined
 
-function revealImage(prefersReducedMotion: boolean) {
-  if (!imageEl.value) return
-  if (prefersReducedMotion) {
-    gsap.set(imageEl.value, { autoAlpha: 1, scale: 1 })
-    return
-  }
-  gsap.to(imageEl.value, { autoAlpha: 1, scale: 1, duration: 1.4, ease: "power2.out" })
+function onImageLoad() {
+  imageLoaded.value = true
 }
 
 onMounted(async () => {
   if (!rootEl.value) return
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-  // Reveal the background photo only once it's actually decoded — avoids a hard "pop"
-  // once the network finishes loading it, independent of the text animation timing.
-  onImageLoad = () => revealImage(prefersReducedMotion)
+  // The photo reveal is a plain CSS transition (compositor-driven, native to the
+  // <img>'s load event) rather than a GSAP tween — it must not depend on GSAP's
+  // rAF ticker to guarantee it always plays, cache or no cache, tab focus or not.
   if (imageEl.value?.complete) {
-    onImageLoad()
-  } else {
-    imageEl.value?.addEventListener("load", onImageLoad, { once: true })
+    imageLoaded.value = true
   }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
   // Wait for the display font so the word spans don't reflow (and visibly jump)
   // mid-animation when it swaps in — caps the wait so a slow font never blocks the hero.
@@ -60,10 +54,7 @@ onMounted(async () => {
   }, rootEl.value)
 })
 
-onUnmounted(() => {
-  ctx?.revert()
-  if (onImageLoad) imageEl.value?.removeEventListener("load", onImageLoad)
-})
+onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
@@ -73,10 +64,12 @@ onUnmounted(() => {
         ref="imageEl"
         src="/images/hero-storage.jpg"
         alt=""
-        class="size-full scale-105 object-cover opacity-0"
+        class="size-full object-cover transition-[opacity,scale] duration-[1400ms] ease-out motion-reduce:transition-none"
+        :class="imageLoaded ? 'scale-100 opacity-100' : 'scale-105 opacity-0'"
         fetchpriority="high"
         width="1869"
         height="1920"
+        @load="onImageLoad"
       />
       <div class="absolute inset-0 bg-primary/75"></div>
     </div>
