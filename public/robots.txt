@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lemans-box-vstudios.vercel.app/sitemap.xml
