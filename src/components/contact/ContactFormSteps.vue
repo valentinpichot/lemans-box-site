@@ -86,7 +86,7 @@ function resetForm() {
 </script>
 
 <template>
-  <div class="mx-auto w-full max-w-xl rounded-3xl border border-primary/10 bg-white p-6 shadow-sm sm:p-10">
+  <div class="card-surface mx-auto w-full max-w-xl rounded-3xl p-6 sm:p-10">
     <div v-if="success" class="flex flex-col items-center gap-4 py-8 text-center">
       <CheckCircle2 class="size-12 text-accent" aria-hidden="true" />
       <h3 class="text-xl font-semibold text-primary">Votre demande a bien été envoyée</h3>

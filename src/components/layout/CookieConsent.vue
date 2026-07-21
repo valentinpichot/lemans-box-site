@@ -16,7 +16,7 @@ const { consent, accept, decline } = useCookieConsent()
   >
     <div
       v-if="consent === 'pending'"
-      class="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-2xl flex-col gap-4 rounded-2xl border border-primary/10 bg-white p-5 shadow-xl sm:flex-row sm:items-center"
+      class="card-surface fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-2xl flex-col gap-4 rounded-2xl p-5 sm:flex-row sm:items-center"
       role="dialog"
       aria-live="polite"
       aria-label="Consentement aux cookies"

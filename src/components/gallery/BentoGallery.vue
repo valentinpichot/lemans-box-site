@@ -54,7 +54,7 @@ onUnmounted(() => ctx?.revert())
     <div class="grid grid-cols-2 gap-4 [grid-auto-flow:dense] sm:auto-rows-[150px] sm:grid-cols-4">
       <div
         data-bento-tile
-        class="relative col-span-2 row-span-2 flex flex-col justify-end overflow-hidden rounded-3xl bg-primary p-6 text-white"
+        class="card-surface-dark relative col-span-2 row-span-2 flex flex-col justify-end overflow-hidden rounded-3xl p-6 text-white"
       >
         <SecureBoxMotif
           color="#f6f3ec"
@@ -71,7 +71,7 @@ onUnmounted(() => ctx?.revert())
         v-for="tile in tiles.slice(0, 4)"
         :key="tile.label"
         data-bento-tile
-        class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-primary/10 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
+        class="card-surface card-surface-interactive flex flex-col items-center justify-center gap-2 rounded-2xl p-4 text-center"
       >
         <div class="flex size-10 items-center justify-center rounded-full bg-accent/10">
           <component :is="tile.icon" class="size-5 text-accent" aria-hidden="true" />
@@ -81,7 +81,7 @@ onUnmounted(() => ctx?.revert())
 
       <div
         data-bento-tile
-        class="flex flex-col items-center justify-center gap-1 rounded-2xl bg-accent p-4 text-center text-white"
+        class="flex flex-col items-center justify-center gap-1 rounded-2xl bg-accent p-4 text-center text-white shadow-[0_16px_32px_-14px_rgba(232,98,44,0.55)]"
       >
         <p class="text-3xl font-semibold">29&nbsp;€</p>
         <p class="text-xs text-white/85">à partir de, par mois</p>
@@ -91,7 +91,7 @@ onUnmounted(() => ctx?.revert())
         v-for="tile in tiles.slice(4)"
         :key="tile.label"
         data-bento-tile
-        class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-primary/10 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
+        class="card-surface card-surface-interactive flex flex-col items-center justify-center gap-2 rounded-2xl p-4 text-center"
       >
         <div class="flex size-10 items-center justify-center rounded-full bg-accent/10">
           <component :is="tile.icon" class="size-5 text-accent" aria-hidden="true" />
@@ -101,7 +101,7 @@ onUnmounted(() => ctx?.revert())
 
       <div
         data-bento-tile
-        class="flex flex-col items-center justify-center gap-1 rounded-2xl border border-primary/10 bg-white p-4 text-center"
+        class="card-surface flex flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center"
       >
         <p class="text-3xl font-semibold text-primary">3</p>
         <p class="text-xs text-text/60">centres en Sarthe</p>

@@ -91,7 +91,7 @@ onUnmounted(() => ctx?.revert())
       <div data-fade class="mt-10">
         <RouterLink
           to="/particuliers"
-          class="inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white transition-colors hover:bg-accent-light"
+          class="inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white shadow-[0_10px_28px_-10px_rgba(232,98,44,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-[0_18px_36px_-12px_rgba(232,98,44,0.75)]"
         >
           Voir les tarifs
         </RouterLink>

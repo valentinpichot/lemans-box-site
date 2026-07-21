@@ -31,6 +31,7 @@
   h4 {
     font-family: var(--font-display);
     margin: 0;
+    text-wrap: balance;
   }
 
   p {
@@ -55,6 +56,34 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, white 60%, transparent);
+  }
+
+  /* Soft, layered shadow instead of a flat border — reads as designed rather than templated. */
+  .card-surface {
+    background-color: white;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 7%, transparent);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--color-primary) 4%, transparent),
+      0 12px 28px -16px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease;
+  }
+
+  .card-surface-interactive:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    box-shadow:
+      0 2px 6px color-mix(in srgb, var(--color-primary) 6%, transparent),
+      0 24px 44px -18px color-mix(in srgb, var(--color-accent) 28%, transparent);
+  }
+
+  .card-surface-dark {
+    background-color: var(--color-primary);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, black 20%, transparent),
+      0 20px 44px -20px color-mix(in srgb, black 55%, transparent);
   }
 }
 

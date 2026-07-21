@@ -31,7 +31,7 @@ useScrollReveal(rootEl)
           v-for="rate in proRates"
           :key="rate.surface"
           data-reveal-item
-          class="group rounded-2xl border border-primary/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
+          class="card-surface card-surface-interactive group rounded-2xl p-6"
         >
           <div class="flex items-baseline justify-between">
             <p class="text-lg font-semibold text-primary">{{ rate.surface }}</p>
@@ -52,7 +52,7 @@ useScrollReveal(rootEl)
           v-for="item in proEquipment"
           :key="item"
           data-reveal-item
-          class="flex items-center gap-3 rounded-xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+          class="card-surface card-surface-interactive flex items-center gap-3 rounded-xl p-4"
         >
           <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
             <Check class="size-4 text-accent" aria-hidden="true" />
@@ -69,7 +69,7 @@ useScrollReveal(rootEl)
           v-for="item in proServices"
           :key="item"
           data-reveal-item
-          class="flex items-center gap-3 rounded-xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+          class="card-surface card-surface-interactive flex items-center gap-3 rounded-xl p-4"
         >
           <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
             <Check class="size-4 text-accent" aria-hidden="true" />
@@ -86,7 +86,7 @@ useScrollReveal(rootEl)
       <div class="relative mt-6 flex flex-wrap items-center justify-center gap-3">
         <a
           :href="company.phoneHref"
-          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white shadow-[0_10px_24px_-10px_rgba(232,98,44,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-[0_16px_32px_-12px_rgba(232,98,44,0.7)]"
         >
           {{ company.phone }}
         </a>

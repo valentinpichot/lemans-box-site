@@ -25,7 +25,7 @@ useScrollReveal(rootEl)
         <RouterLink
           to="/particuliers"
           data-reveal-item
-          class="group flex flex-col justify-between rounded-3xl bg-primary p-8 text-white transition-all hover:-translate-y-1 hover:shadow-xl sm:p-10"
+          class="card-surface-dark group flex flex-col justify-between rounded-3xl p-8 text-white transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:p-10"
         >
           <div>
             <div class="flex size-11 items-center justify-center rounded-full bg-white/10">
@@ -45,7 +45,7 @@ useScrollReveal(rootEl)
         <RouterLink
           to="/professionnels"
           data-reveal-item
-          class="group flex flex-col justify-between rounded-3xl border border-primary/10 bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-xl sm:p-10"
+          class="card-surface card-surface-interactive group flex flex-col justify-between rounded-3xl p-8 sm:p-10"
         >
           <div>
             <div class="flex size-11 items-center justify-center rounded-full bg-accent/10">
@@ -71,7 +71,7 @@ useScrollReveal(rootEl)
           v-for="(service, i) in complementaryServices"
           :key="service.title"
           data-reveal-item
-          class="rounded-2xl border border-primary/10 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+          class="card-surface card-surface-interactive rounded-2xl p-6"
         >
           <div class="flex size-10 items-center justify-center rounded-full bg-accent/10">
             <component :is="serviceIcons[i]" class="size-5 text-accent" aria-hidden="true" />
@@ -89,7 +89,7 @@ useScrollReveal(rootEl)
       <p class="relative mx-auto mt-4 max-w-xl text-white/70">Contactez-nous pour un devis gratuit et personnalisé, sans engagement.</p>
       <RouterLink
         to="/contact"
-        class="relative mt-8 inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white transition-colors hover:bg-accent-light"
+        class="relative mt-8 inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-base font-semibold text-white shadow-[0_10px_28px_-10px_rgba(232,98,44,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-[0_18px_36px_-12px_rgba(232,98,44,0.7)]"
       >
         Nous contacter
       </RouterLink>

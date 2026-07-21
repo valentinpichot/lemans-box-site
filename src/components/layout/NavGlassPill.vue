@@ -40,7 +40,7 @@ const mobileOpen = ref(false)
 
       <a
         :href="company.phoneHref"
-        class="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-light lg:flex"
+        class="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-[0_6px_16px_-6px_rgba(232,98,44,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-[0_10px_22px_-8px_rgba(232,98,44,0.65)] lg:flex"
       >
         <Phone class="size-4" aria-hidden="true" />
         {{ company.phone }}

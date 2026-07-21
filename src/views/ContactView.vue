@@ -26,7 +26,7 @@ const points = [
         <div class="mt-8 space-y-3">
           <a
             :href="company.phoneHref"
-            class="flex items-center gap-3 rounded-2xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md"
+            class="card-surface card-surface-interactive flex items-center gap-3 rounded-2xl p-4"
           >
             <div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent/10">
               <Phone class="size-5 text-accent" aria-hidden="true" />
@@ -38,7 +38,7 @@ const points = [
           </a>
           <a
             :href="company.emailHref"
-            class="flex items-center gap-3 rounded-2xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md"
+            class="card-surface card-surface-interactive flex items-center gap-3 rounded-2xl p-4"
           >
             <div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent/10">
               <Mail class="size-5 text-accent" aria-hidden="true" />

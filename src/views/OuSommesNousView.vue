@@ -33,7 +33,7 @@ useScrollReveal(rootEl)
           v-for="center in centers"
           :key="center.name"
           data-reveal-item
-          class="group rounded-3xl border border-primary/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl"
+          class="card-surface card-surface-interactive group rounded-3xl p-6"
         >
           <div class="flex size-11 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent">
             <MapPin class="size-5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />

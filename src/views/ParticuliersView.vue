@@ -38,7 +38,7 @@ useScrollReveal(rootEl)
           v-for="rate in particulierRates"
           :key="rate.volume"
           data-reveal-item
-          class="group rounded-2xl border border-primary/10 bg-white p-5 text-center transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
+          class="card-surface card-surface-interactive group rounded-2xl p-5 text-center"
         >
           <p class="text-sm font-medium text-text/60">{{ rate.volume }}</p>
           <p class="mt-2 text-3xl font-semibold text-primary transition-colors group-hover:text-accent">{{ rate.price }}&nbsp;€</p>
@@ -58,7 +58,7 @@ useScrollReveal(rootEl)
           v-for="useCase in useCases"
           :key="useCase.title"
           data-reveal-item
-          class="rounded-2xl border border-primary/10 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+          class="card-surface card-surface-interactive rounded-2xl p-5"
         >
           <div class="flex size-10 items-center justify-center rounded-full bg-accent/10">
             <component :is="useCase.icon" class="size-5 text-accent" aria-hidden="true" />
@@ -76,7 +76,7 @@ useScrollReveal(rootEl)
       <div class="relative mt-6 flex flex-wrap items-center justify-center gap-3">
         <a
           :href="company.phoneHref"
-          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+          class="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white shadow-[0_10px_24px_-10px_rgba(232,98,44,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-[0_16px_32px_-12px_rgba(232,98,44,0.7)]"
         >
           {{ company.phone }}
         </a>

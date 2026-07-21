@@ -48,7 +48,7 @@ useScrollReveal(rootEl)
             v-for="(item, i) in conditions"
             :key="item.title"
             data-reveal-item
-            class="rounded-2xl border border-primary/10 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+            class="card-surface card-surface-interactive rounded-2xl p-5"
           >
             <div class="flex size-9 items-center justify-center rounded-full bg-accent/10">
               <component :is="conditionIcons[i]" class="size-4 text-accent" aria-hidden="true" />
@@ -67,7 +67,7 @@ useScrollReveal(rootEl)
           v-for="doc in requiredDocuments"
           :key="doc"
           data-reveal-item
-          class="flex items-center gap-3 rounded-xl border border-primary/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+          class="card-surface card-surface-interactive flex items-center gap-3 rounded-xl p-4"
         >
           <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
             <FileCheck class="size-4 text-accent" aria-hidden="true" />
